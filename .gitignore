@@ -1,0 +1,9 @@
+# Workspace and Virtual Env
+venv
+.vscode
+
+# Python Files
+*.pyc
+
+# OS Files
+.DS_Store
