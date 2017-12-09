@@ -24,33 +24,34 @@ def test_basket_show():
 def test_basket_value():
     """Test expected price of simple basket"""
     basket = start_basket(['CH1', 'AP1'])
-    expected_value = 3.11 + 6
+    expected_value = 311 + 600
     assert basket.value() == expected_value
 
 def test_basket_value_bogo():
     """Test expected price of basket: BOGO discount"""
     items = ['CF1', 'CF1', 'CF1', 'CF1', 'CF1']
     basket = start_basket(items)
-    expected_value = (11.23 * (len(items) - len(items) % 2) / 2) + (len(items) % 2) * 11.23
+    expected_value = (1123 * (len(items) - len(items) % 2) / 2) + (len(items) % 2) * 1123
     assert basket.value() == expected_value
 
 def test_basket_value_appl():
     """Test expected price of basket: BOGO discount"""
     items = ['AP1', 'AP1', 'AP1', 'AP1']
     basket = start_basket(items)
-    expected_value = (6 - 1.5) * len(items)
+    expected_value = (600 - 150) * len(items)
     assert basket.value() == expected_value
 
 def test_basket_value_chmk():
     """Test expected price of basket: CHMK discount"""
     basket = start_basket(['CH1', 'MK1', 'CH1', 'CH1', 'MK1'])
-    expected_value = 3.11 * 3 + 4.75 * 0 + 4.75
+    expected_value = 311 * 3 + 475 * 0 + 475
     assert basket.value() == expected_value
 
 def test_basket_value_apom():
     """Test expected price of basket: APOM discount"""
     basket = start_basket(['OM1', 'AP1', 'AP1'])
-    expected_value = 3.69 + 6 + 6 / 2
+    expected_value = 369 + 600 + 600 / 2
+    print basket.show()
     assert basket.value() == expected_value
 
 def start_basket(items):
