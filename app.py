@@ -8,7 +8,7 @@ PRODUCTS = {
     'AP1': {
         'code': 'AP1',
         'name': 'Apples',
-        'price': 6
+        'price': 6.00
     },
     'CF1': {
         'code': 'CF1',
@@ -46,10 +46,17 @@ class Basket(object):
             print "Item was not found in basket."
     def show(self):
         """Returns inventory display of basket"""
-        pass
+        inv_display = 'Item\t\t\t\tPrice\n----\t\t\t\t-----\n'
+        for item in self.items:
+            inv_display += str(item['code']) + '\t\t\t\t' + '{0:.2f}'.format(item['price']) + '\n'
+        inv_display += '-------------------------------------\n\t\t\t\t' + '{0:.2f}'.format(self.value()) #pylint: disable=line-too-long
+        return inv_display
     def value(self):
         """Return the value of all items"""
-        pass
+        basket_value = 0
+        for item in self.items:
+            basket_value += item['price']
+        return basket_value
     def find(self, code):
         """Looks for item with matching code in basket"""
         for index, item in enumerate(self.items):
@@ -71,7 +78,7 @@ def main():
             running = False
             print 'Exiting... Thank you and have a nice day.'
         elif user_input == 'inv':
-            user_basket.show()
+            print user_basket.show()
         elif user_input == 'add':
             user_add_input = raw_input('Add an item: ')
             user_basket.add(user_add_input)
@@ -82,6 +89,7 @@ def main():
             print user_basket.items
         else:
             print 'Not a valid command. Try again.'
+        print user_basket.value()
 
 if __name__ == '__main__':
     main()
